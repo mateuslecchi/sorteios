@@ -79,44 +79,44 @@ class SorteavelResource extends Resource
                         ->send();
                     }
                 }),
-                Tables\Actions\Action::make('importarCSV')
-                ->label('Importar CSV')
-                ->action(function (array $data) {
-                    // Salva o arquivo em um diretório temporário
-                    $filePath = $data['arquivo_csv'];
+                // Tables\Actions\Action::make('importarCSV')
+                // ->label('Importar CSV')
+                // ->action(function (array $data) {
+                //     // Salva o arquivo em um diretório temporário
+                //     $filePath = $data['arquivo_csv'];
 
-                    // Importa o arquivo usando o caminho completo
-                    Excel::import(new SorteaveisImport(), Storage::disk('public')->path($filePath));
+                //     // Importa o arquivo usando o caminho completo
+                //     Excel::import(new SorteaveisImport(), Storage::disk('public')->path($filePath));
 
-                    // Notifica sucesso e apaga o arquivo temporário
-                    Notification::make()
-                        ->title('Dados importados com sucesso!')
-                        ->success()
-                        ->send();
+                //     // Notifica sucesso e apaga o arquivo temporário
+                //     Notification::make()
+                //         ->title('Dados importados com sucesso!')
+                //         ->success()
+                //         ->send();
 
-                    // Apaga o arquivo temporário para evitar armazenamento desnecessário
-                    Storage::delete($filePath);
-                })
-                ->form([
-                    Forms\Components\FileUpload::make('arquivo_csv')
-                        ->label('Arquivo CSV')
-                        ->required()
-                        ->acceptedFileTypes(['text/csv', 'text/plain'])
-                ]),
-                Tables\Actions\Action::make('limparTabela')
-                ->label('Limpar Tabela')
-                ->action(function () {
-                    // Aqui você pode adicionar lógica para limpar a tabela
-                    Sorteavel::query()->delete(); // Remove todos os registros
+                //     // Apaga o arquivo temporário para evitar armazenamento desnecessário
+                //     Storage::delete($filePath);
+                // })
+                // ->form([
+                //     Forms\Components\FileUpload::make('arquivo_csv')
+                //         ->label('Arquivo CSV')
+                //         ->required()
+                //         ->acceptedFileTypes(['text/csv', 'text/plain'])
+                // ]),
+                // Tables\Actions\Action::make('limparTabela')
+                // ->label('Limpar Tabela')
+                // ->action(function () {
+                //     // Aqui você pode adicionar lógica para limpar a tabela
+                //     Sorteavel::query()->delete(); // Remove todos os registros
 
-                    Notification::make()
-                        ->title('Tabela limpa com sucesso!')
-                        ->success()
-                        ->send();
-                })
-                ->form([
-                    Fieldset::make('Deseja Continuar?')
-                ]),
+                //     Notification::make()
+                //         ->title('Tabela limpa com sucesso!')
+                //         ->success()
+                //         ->send();
+                // })
+                // ->form([
+                //     Fieldset::make('Deseja Continuar?')
+                // ]),
 
             ]);
     }
