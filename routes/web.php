@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\SorteioInscricao;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', SorteioInscricao::class)->name('sorteio.inscricao');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
