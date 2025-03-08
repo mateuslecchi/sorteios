@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Sorteavel;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class SorteioInscricao extends Component
 {
@@ -22,6 +23,9 @@ class SorteioInscricao extends Component
 
         Sorteavel::create([
             'nome' => $this->nome,
+            'secretaria' => '--',
+            'local' => 'Praça da Paz',
+            'matricula' => uniqid(more_entropy:true),
         ]);
 
         session()->flash('success', 'Inscrição realizada com sucesso!');
